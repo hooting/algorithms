@@ -2,7 +2,7 @@ import random
 import unittest
 from ..sorting import bubble_sort, selection_sort, insertion_sort, \
     merge_sort, quick_sort, heap_sort, shell_sort, comb_sort, cocktail_sort, \
-    quick_sort_in_place, gnome_sort
+    quick_sort_in_place, gnome_sort, dual_pivot_quick_sort
 
 
 class SortingAlgorithmTestCase(unittest.TestCase):
@@ -89,6 +89,13 @@ class TestQuickSortInPlace(SortingAlgorithmTestCase):
         self.assertIs(quick_sort_in_place.partition(self.seq, 0,
             len(self.seq)-1, 5), 5)
 
+class TestDualPivotQuickSort(SortingAlgorithmTestCase):
+    """
+    Tests Dual-pivot Quick sort on a small range from 0-9
+    """
+    def test_dual_pivot_quicksort(self):
+        self.output = dual_pivot_quick_sort.sort(self.input, 0, len(self.input)-1)
+        self.assertEqual(self.correct, self.output)
 
 class TestHeapSort(SortingAlgorithmTestCase):
     """
@@ -138,3 +145,4 @@ class TestGnomeSort(SortingAlgorithmTestCase):
     def test_gnomesort(self):
         self.output = gnome_sort.sort(self.input)
         self.assertEqual(self.correct, self.output)
+
